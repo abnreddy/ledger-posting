@@ -1,3 +1,10 @@
 spring:
   application:
     name: ledger-posting
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ledger
+    username: ledger
+    password: ledger
+    driverClassName: org.postgresql.Driver
+
