@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
@@ -23,20 +24,20 @@ public class AccountServiceTest {
 
     @Test
     void createAccountTest(){
-        Mockito.when(accountRepository.getReferenceById(Mockito.anyString())).thenReturn(Account.builder().build());
+        Mockito.when(accountRepository.findById(Mockito.anyString())).thenReturn(Optional.of(Account.builder().build()));
         accountService.createAccount(Account.builder()
                         .currency("USD")
                         .accountRef("1234")
                         .amount(BigDecimal.ONE)
                         .build());
-        Mockito.verify(accountRepository, Mockito.times(1)).getReferenceById("1234");
+        Mockito.verify(accountRepository, Mockito.times(1)).findById("1234");
         Mockito.verify(accountRepository, Mockito.times(1)).save(Mockito.any());
     }
 
     @Test
     void retrieveAccountTest(){
-        Mockito.when(accountRepository.getReferenceById(Mockito.anyString())).thenReturn(Account.builder().build());
+        Mockito.when(accountRepository.findById(Mockito.anyString())).thenReturn(Optional.of(Account.builder().build()));
         accountService.getAccountBalance("1234");
-        Mockito.verify(accountRepository, Mockito.times(1)).getReferenceById("1234");
+        Mockito.verify(accountRepository, Mockito.times(1)).findById(Mockito.anyString());
     }
 }

@@ -6,7 +6,6 @@ import com.ledger.model.Account;
 import com.ledger.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -31,6 +30,6 @@ public class AccountService {
     }
 
     public Account getAccountBalance(String accountRef) throws AccountNotFoundException {
-        return Optional.of(accountRepository.getReferenceById(accountRef)).orElse(Account.builder().build());
+        return accountRepository.findById(accountRef).orElse(Account.builder().build());
     }
 }

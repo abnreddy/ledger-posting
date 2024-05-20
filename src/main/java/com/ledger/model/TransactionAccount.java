@@ -14,14 +14,11 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class TransactionAccount {
 
   @Id
   private String accountRef;
+  private String transactionRef;
   private String currency;
   private BigDecimal amount;
-
-  public boolean isOverdrawn() {
-    return amount.doubleValue() < 0.0;
-  }
 }
